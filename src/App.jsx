@@ -24,24 +24,18 @@ function App() {
         setUser(prevState => ({...prevState, name: name || prevState.name}));
     }
 
-    const incrementFollowers = () => {
+
+
+    const changeFollowers = sum => {
         setStats(prevState =>
-            ({...prevState, followers: prevState.followers +1 }));
+            ({...prevState, followers: prevState.followers + sum < 0 ? 0 : prevState.followers +sum}));
     }
 
-    const decrementFollowers = () => {
-        setStats(prevState =>
-            ({...prevState, followers: prevState.followers -1 < 0 ? 0 : prevState.followers -1}));
-    }
 
-    const incrementFollowing = () => {
-        setStats(prevState =>
-            ({...prevState, following: prevState.following +1 }));
-    }
 
-    const decrementFollowing = () => {
+    const changeFollowing = sum => {
         setStats(prevState =>
-            ({...prevState, following: prevState.following -1 < 0 ? 0 : prevState.following -1}));
+            ({...prevState, following: prevState.following +sum  < 0 ? 0 : prevState.following +sum}));
     }
 
 
@@ -52,10 +46,8 @@ function App() {
                 stats,
                 changeAvatar,
                 changeName,
-                incrementFollowers,
-                decrementFollowers,
-                incrementFollowing,
-                decrementFollowing
+                changeFollowers,
+                changeFollowing
             }}>
                 <Navigation/>
                 <Body/>
