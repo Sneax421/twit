@@ -24,13 +24,38 @@ function App() {
         setUser(prevState => ({...prevState, name: name || prevState.name}));
     }
 
+    const incrementFollowers = () => {
+        setStats(prevState =>
+            ({...prevState, followers: prevState.followers +1 }));
+    }
+
+    const decrementFollowers = () => {
+        setStats(prevState =>
+            ({...prevState, followers: prevState.followers -1 < 0 ? 0 : prevState.followers -1}));
+    }
+
+    const incrementFollowing = () => {
+        setStats(prevState =>
+            ({...prevState, following: prevState.following +1 }));
+    }
+
+    const decrementFollowing = () => {
+        setStats(prevState =>
+            ({...prevState, following: prevState.following -1 < 0 ? 0 : prevState.following -1}));
+    }
+
+
     return (
         <div className={`app`}>
             <TwitterContext value={{
                 user,
                 stats,
                 changeAvatar,
-                changeName
+                changeName,
+                incrementFollowers,
+                decrementFollowers,
+                incrementFollowing,
+                decrementFollowing
             }}>
                 <Navigation/>
                 <Body/>
