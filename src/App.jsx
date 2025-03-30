@@ -15,6 +15,7 @@ function App() {
         following: 0
     });
 
+
     const changeAvatar = url => {
         // setUser({...user, avatar: url});
         // url = null;
@@ -25,18 +26,24 @@ function App() {
     }
 
 
-
-    const changeFollowers = sum => {
-        setStats(prevState =>
-            ({...prevState, followers: prevState.followers + sum < 0 ? 0 : prevState.followers +sum}));
+    const follow = (sum, sum2) => {
+        setStats (prevState =>
+            ({...prevState,followers: prevState.followers + sum < 0 ? 0 : prevState.followers + sum,
+                following: prevState.following + sum2 < 0 ? 0 : prevState.following + sum2
+        }))
     }
 
 
-
-    const changeFollowing = sum => {
-        setStats(prevState =>
-            ({...prevState, following: prevState.following +sum  < 0 ? 0 : prevState.following +sum}));
-    }
+    // const changeFollowers = sum => {
+    //     setStats(prevState =>
+    //         ({...prevState, followers: prevState.followers + sum < 0 ? 0 : prevState.followers + sum}));
+    // }
+    //
+    //
+    // const changeFollowing = sum => {
+    //     setStats(prevState =>
+    //         ({...prevState, following: prevState.following + sum < 0 ? 0 : prevState.following + sum}));
+    // }
 
 
     return (
@@ -46,8 +53,9 @@ function App() {
                 stats,
                 changeAvatar,
                 changeName,
-                changeFollowers,
-                changeFollowing
+                follow
+                // changeFollowers,
+                // changeFollowing
             }}>
                 <Navigation/>
                 <Body/>

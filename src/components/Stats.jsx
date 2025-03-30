@@ -3,8 +3,7 @@ import Avatar from "./Avatar.jsx";
 import {TwitterContext} from "../utils/context.js";
 
 const Stats = () => {
-    const {user, stats, changeFollowers,
-        changeFollowing} = useContext(TwitterContext);
+    const {user, stats, follow} = useContext(TwitterContext);
     return (
         <div className={`user-stats`}>
             <div>
@@ -13,17 +12,17 @@ const Stats = () => {
             </div>
             <div className={`stats`}>
                 <div
-                    onClick={() => changeFollowers(1)}
+                    onClick={() => follow(1,0)}
                     onContextMenu={e => {
                         e.preventDefault();
-                        changeFollowers(-1);
+                        follow(-1,0);
                     }}
                 >Followers: {stats.followers}</div>
                 <div
-                    onClick={() => changeFollowing(1)}
+                    onClick={() => follow(0,1)}
                     onContextMenu={e => {
                         e.preventDefault();
-                        changeFollowing(-1);
+                        follow(0,-1);
                     }}
                 >Following: {stats.following}</div>
             </div>
