@@ -33,6 +33,15 @@ function App() {
         }))
     }
 
+    // Oder so
+    // const changeStats = (statsType, sum) => {
+    //     setStats(prevStats => {
+    //         let res = prevStats[statsType] + sum;
+    //         res = res < 0 ? 0 : res;
+    //         return {...prevStats, [statsType]: res};
+    //     })
+    // }
+
 
     // const changeFollowers = sum => {
     //     setStats(prevState =>
@@ -56,6 +65,7 @@ function App() {
                 follow
                 // changeFollowers,
                 // changeFollowing
+                // changeStats
             }}>
                 <Navigation/>
                 <Body/>
