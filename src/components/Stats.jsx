@@ -1,30 +1,37 @@
-import React, {useContext} from 'react';
+
 import Avatar from "./Avatar.jsx";
-import {TwitterContext} from "../utils/context.js";
+import {useDispatch, useSelector} from "react-redux";
+import {changeStats} from "../actions/statsAction.js";
+
 
 const Stats = () => {
-    const {user, stats, follow} = useContext(TwitterContext);
+
+    const {name} = useSelector((state) => state.user);
+    const {followers, following} = useSelector(state => state.stats);
+    const dispatch = useDispatch();
+
+
     return (
         <div className={`user-stats`}>
             <div>
                 <Avatar/>
-                {user.name}
+                {name}
             </div>
             <div className={`stats`}>
                 <div
-                    onClick={() => follow(1,0)}
+                    onClick={() => dispatch(changeStats('followers', 1))}
                     onContextMenu={e => {
                         e.preventDefault();
-                        follow(-1,0);
+                        dispatch(changeStats('followers', -1));
                     }}
-                >Followers: {stats.followers}</div>
+                >Followers: {followers}</div>
                 <div
-                    onClick={() => follow(0,1)}
+                    onClick={() => dispatch(changeStats('following', 1))}
                     onContextMenu={e => {
                         e.preventDefault();
-                        follow(0,-1);
+                        dispatch(changeStats('following', -1));
                     }}
-                >Following: {stats.following}</div>
+                >Following: {following}</div>
             </div>
         </div>
     );

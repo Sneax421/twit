@@ -1,1 +1,0 @@
-export const base_url = 'https://gravatar.com/avatar/000?d=';
