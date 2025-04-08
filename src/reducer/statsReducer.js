@@ -7,15 +7,20 @@ type Stats = {
 }
  */
 
+const initialState = {
+    followers: 0,
+    following: 0
+};
 
 
-export const statsReducer = (stats, action) => {
+
+export const statsReducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_STATS: {
-            const res = stats[action.payload.statsType] + action.payload.sum;
-            return  {...stats, [action.payload.statsType]: res >= 0 ? res : 0};
+            const res = state[action.payload.statsType] + action.payload.sum;
+            return  {...state, [action.payload.statsType]: res >= 0 ? res : 0};
         }
         default:
-            return stats;
+            return state;
     }
 }
